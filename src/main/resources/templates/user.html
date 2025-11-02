@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<body class="bg-light">
+
+<header class="navbar bg-dark">
+    <p class="ms-3 text-white m-0">
+        <span th:text="${currentUser}" class="fw-bolder"></span>
+        with roles:<span class="ms-1" th:each="role : ${user.roles}" th:text="${role.roleName}"></span>
+    </p>
+    <a th:href="@{/logout}" class="text-secondary text-decoration-none me-3">Logout</a>
+</header>
+
+<main class="d-flex w-100 bg-light">
+    <nav class="nav nav-pills flex-nowrap flex-column w-25 min-vh-100 mt-2 bg-body" role="tablist">
+        <a class="nav-link btn w-100 ps-3 text-start border-0 active"
+           th:text="${user.roles[0].roleName}"></a>
+    </nav>
+    <div class="w-75 p-4 pt-3">
+        <div>
+            <h1 class="fw-semibold">User information-page</h1>
+            <div class="border mt-3">
+                <h4 class="fw-semibold mb-0 p-3 ms-2">About user</h4>
+            </div>
+            <div class="border bg-body p-4">
+                <div class="d-flex align-items-center border-top p-3 ps-2">
+                    <h5 class="mb-0 fw-semibold col-1">ID</h5>
+                    <h5 class="mb-0 fw-semibold col-2">First Name</h5>
+                    <h5 class="mb-0 fw-semibold col-2">Last Name</h5>
+                    <h5 class="mb-0 fw-semibold col-1">Age</h5>
+                    <h5 class="mb-0 fw-semibold col-2">Email</h5>
+                    <h5 class="mb-0 fw-semibold col">Role</h5>
+                </div>
+                <div class="d-flex align-items-center border-top p-3 ps-2">
+                    <p class="mb-0 col-1" th:text="${user.id}"></p>
+                    <p class="mb-0 col-2" th:text="${user.firstName}"></p>
+                    <p class="mb-0 col-2" th:text="${user.surname}"></p>
+                    <p class="mb-0 col-1" th:text="${user.age}"></p>
+                    <p class="mb-0 col-2 text-break" th:text="${user.email}"></p>
+                    <p class="mb-0 col text-break">
+                        <span class="me-2" th:each="role : ${user.roles}" th:text="${role.roleName}"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="/scripts/bootstrap.min.js"></script>
+<script src="/scripts/script.js"></script>
+</body>
+</html>
