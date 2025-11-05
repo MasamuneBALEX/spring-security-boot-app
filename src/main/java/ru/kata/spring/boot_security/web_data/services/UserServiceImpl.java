@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Email is already in use");
         }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
